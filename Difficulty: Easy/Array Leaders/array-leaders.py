@@ -3,17 +3,16 @@ class Solution:
     
     #Function to find the leaders in the array.
     def leaders(self,n, arr):
-        #temperature problem / using stack
-        a=[]
-        for i in range(len(arr)):
-            while(a):            
-                if(arr[i]>a[-1]):
-                    a.pop()
-                else:
-                    break
-            a.append(arr[i])
+        #Code here
+        maxi = arr[-1]
+        out = [maxi]
+        for i in arr[-2::-1]:
+            if i >= maxi:
+                out.append(i)
+                maxi = i
+                
+        return out[-1::-1]
 
-        return a
 #{ 
  # Driver Code Starts
 #Initial Template for Python 3
