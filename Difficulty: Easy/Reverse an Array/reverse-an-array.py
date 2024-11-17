@@ -1,6 +1,9 @@
 class Solution:
     def reverseArray(self, arr):
-        arr.reverse()
+        for i in range(len(arr)//2):
+            # 5 4  2 1
+            # 1 2 3 4 5 
+            arr[i],arr[len(arr)-1-i]=arr[len(arr)-1-i],arr[i]
         
         
         
