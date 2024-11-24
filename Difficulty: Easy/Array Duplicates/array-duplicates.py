@@ -1,42 +1,33 @@
-
-from typing import List
-from collections import Counter
-
 class Solution:
-    def duplicates(self, n : int, arr : List[int]) -> List[int]:
-        x=Counter(arr)
-        y=sorted([i[0] for i in x.items() if i[1]>1])
-        return y if(len(y)>0) else [-1]
+    def findDuplicates(self, arr):
+        # Dictionary to store the frequency of elements
+        frequency = {}
+        for num in arr:
+            frequency[num] = frequency.get(num, 0) + 1
+        
+        # Find elements with frequency > 1
+        duplicates = [num for num, count in frequency.items() if count > 1]
+        
+        # Return duplicates in sorted order
+        return sorted(duplicates)
+
+
 
 
 #{ 
  # Driver Code Starts
-class IntArray:
+# Initial Template for Python 3
 
-    def __init__(self) -> None:
-        pass
+t = int(input())  # number of test cases
+for _ in range(t):
+    arr = list(map(int, input().split()))  # input array
+    s = Solution().findDuplicates(arr)  # find the duplicates
 
-    def Input(self, n):
-        arr = [int(i) for i in input().strip().split()]  #array input
-        return arr
-
-    def Print(self, arr):
-        for i in arr:
-            print(i, end=" ")
-        print()
-
-
-if __name__ == "__main__":
-    t = int(input())
-    for _ in range(t):
-
-        n = int(input())
-
-        arr = IntArray().Input(n)
-
-        obj = Solution()
-        res = obj.duplicates(n, arr)
-
-        IntArray().Print(res)
+    # Output formatting
+    if s:
+        print(" ".join(map(str, s)))  # Print duplicates in ascending order
+    else:
+        print("[]")  # Print empty list if no duplicates are found
+    print("~")
 
 # } Driver Code Ends
