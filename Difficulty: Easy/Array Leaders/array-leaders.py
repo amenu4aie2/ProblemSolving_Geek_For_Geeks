@@ -1,46 +1,29 @@
 class Solution:
-    #Back-end complete function Template for Python 3
-    
-    #Function to find the leaders in the array.
-    def leaders(self,n, arr):
-        #Code here
-        maxi = arr[-1]
-        out = [maxi]
-        for i in arr[-2::-1]:
-            if i >= maxi:
-                out.append(i)
-                maxi = i
-                
-        return out[-1::-1]
+    def leaders(self, arr):
+        l=[]
+        ra=float('-inf')
+        for i in arr[::-1]:
+            if(i>=ra):
+                l.append(i)
+            
+            
 
+            ra=max(i,ra)
+        l.reverse()
+        return l
 #{ 
  # Driver Code Starts
-#Initial Template for Python 3
+t = int(input())  # number of test cases
+for _ in range(t):
+    arr = list(map(int, input().split()))  # input array
+    s = Solution().leaders(arr)  # find the leaders
 
-import math
+    # Output formatting
+    if s:
+        print(" ".join(map(str, s)))  # Print leaders in the required order
+    else:
+        print("[]")  # Print empty list if no leaders are found
 
-
-def main():
-
-    T = int(input())
-
-    while (T > 0):
-
-        N = int(input())
-
-        A = [int(x) for x in input().strip().split()]
-        obj = Solution()
-
-        A = obj.leaders(N, A)
-
-        for i in A:
-            print(i, end=" ")
-        print()
-
-        T -= 1
-
-
-if __name__ == "__main__":
-    main()
+    print("~")
 
 # } Driver Code Ends
