@@ -1,15 +1,24 @@
 #User function Template for python3
-class Solution: 
-    def subArraySum(self, arr, target):
-        for i in range(len(arr)):
-            s=0
-            for j in range(i,len(arr)):
-                s+=arr[j]
-                if(s==target):
-                    return [i+1,j+1]
-                elif(s>target):
-                    break
+class Solution:
+    def subarraySum(self, arr, target):
+        start = 0
+        current_sum = 0
+    
+        for end in range(len(arr)):
+            current_sum += arr[end]
+            
+            # Shrink the window from the left
+            while current_sum > target and start < end:
+                current_sum -= arr[start]
+                start += 1
+            
+            # Check if we found the subarray
+            if current_sum == target:
+                return [start + 1, end + 1]
+        
+        # If no subarray is found
         return [-1]
+        
 #{ 
  # Driver Code Starts
 # Initial Template for Python 3
@@ -20,9 +29,8 @@ if __name__ == '__main__':
         arr = list(map(int, input().strip().split()))
         d = int(input().strip())
         ob = Solution()
-        result = ob.subArraySum(arr, d)
-        print(" ".join(map(str,
-                           result)))  # Print the result in the desired format
+        result = ob.subarraySum(arr, d)
+        print(" ".join(map(str, result)))
         tc -= 1
         print("~")
 
